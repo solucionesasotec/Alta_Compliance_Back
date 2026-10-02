@@ -29,10 +29,21 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-//    @PostMapping("/otp/validar")
-//    public ResponseEntity<?> validarOtp(@RequestBody OtpRequest request) {
-//        return ResponseEntity.ok().build();
-//    }
+    @PostMapping("/otp/validar")
+    public ResponseEntity<ApiResponse<Object>> validarOtp(
+            @RequestHeader("Authorization") String authHeader,
+            @RequestHeader(value = "X-Device-Id", required = false) String deviceId,
+            @RequestParam String codigo,
+            HttpServletRequest httpRequest
+    ) {
+        String tokenDesafio = authHeader != null && authHeader.startsWith("Bearer ") ? authHeader.substring(7) : null;
+
+        String ip = httpRequest.getRemoteAddr();
+        String userAgent = httpRequest.getHeader("User-Agent");
+
+        ApiResponse<Object> response = authService.validarOtp(tokenDesafio, codigo, null, ip, userAgent);
+        return ResponseEntity.ok(response);
+    }
 
     @GetMapping("/password/policy") // Endpoint exacto de la especificación[cite: 1]
     public ResponseEntity<ApiResponse<PoliticaPasswordResponse>> obtenerPolitica(
