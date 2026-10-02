@@ -43,6 +43,23 @@ public class SegLogAcceso {
     @Column(name = "sts_dispositivo_nuevo", nullable = false, length = 1)
     private String stsDispositivoNuevo;
 
+    public SegLogAcceso() {
+    }
+
+    public SegLogAcceso(Long numLog, LocalDateTime fecEvento, String nomLoginIntento, Long codUsuario, UUID idSesion, String codEvento, String codResultado, String txtIp, String txtDeviceId, String txtUserAgent, String stsDispositivoNuevo) {
+        this.numLog = numLog;
+        this.fecEvento = fecEvento;
+        this.nomLoginIntento = nomLoginIntento;
+        this.codUsuario = codUsuario;
+        this.idSesion = idSesion;
+        this.codEvento = codEvento;
+        this.codResultado = codResultado;
+        this.txtIp = txtIp;
+        this.txtDeviceId = txtDeviceId;
+        this.txtUserAgent = txtUserAgent;
+        this.stsDispositivoNuevo = stsDispositivoNuevo;
+    }
+
     // Getters y Setters
     public Long getNumLog() {
         return numLog;

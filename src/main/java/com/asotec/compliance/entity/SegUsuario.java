@@ -81,6 +81,9 @@ public class SegUsuario {
     @Column(name = "fec_usrmod", nullable = false)
     private LocalDateTime fecUsrmod;
 
+    public SegUsuario() {
+    }
+
     // Getters y Setters
     public Long getCodUsuario() {
         return codUsuario;
